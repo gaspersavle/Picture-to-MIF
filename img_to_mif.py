@@ -2,6 +2,7 @@ import numpy as np
 import cv2
 import argparse
 import os
+from colorama import Fore
 
 parser = argparse.ArgumentParser(description='Image to MIF conversion')
 parser.add_argument('--indir', type=str, required=True,
@@ -41,7 +42,7 @@ class ImgToMIF():
         filenames = sorted(os.listdir(directory))
 
         for file in filenames:
-            print(f"Found file: {file}")
+            print(f"{Fore.YELLOW}Found file: {Fore.CYAN}{file}")
             self.imgs.append(cv2.imread(os.path.join(directory, file)))
             self.names.append(file.split("."))
     
@@ -98,7 +99,7 @@ class ImgToMIF():
             colfile.close
             lumfile.close
 
-            print(f"Finished processing file: {self.names[index][0]}.{self.names[index][1]}")
+            print(f"{Fore.GREEN}Finished processing file: {Fore.BLUE}{self.names[index][0]}.{self.names[index][1]}")
 
 
     def header (self, file,width,depth):
